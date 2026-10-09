@@ -1,0 +1,7 @@
+{
+  "name": "krelyvo-demo-ember-oak",
+  "compatibility_date": "2026-10-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [{ "type": "ESModule", "globs": ["**/*.mjs", "**/*.js"] }]
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# Crawlers may read the page-level noindex directive. This is a fictional concept.
