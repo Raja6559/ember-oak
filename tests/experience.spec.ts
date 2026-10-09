@@ -18,7 +18,13 @@ test('menu categories expose all nine dishes through mouse and keyboard', async 
 
 test('reservation traps focus, closes on Escape and returns focus without submitting data', async ({ page }) => {
   const writes: string[] = [];
-  page.on('request', (r) => { if (r.method() !== 'GET') writes.push(r.method() + ' ' + r.url()); });
+  page.on('request', (r) => {
+    // Cloudflare may inject its zone-level performance beacon on the public host.
+    // It is unrelated to the reservation preview; all application writes still fail this test.
+    if (r.method() !== 'GET' && new URL(r.url()).pathname !== '/cdn-cgi/rum') {
+      writes.push(r.method() + ' ' + r.url());
+    }
+  });
   await page.goto('/');
   const trigger = page.locator('.hero').getByRole('button', { name: 'Preview a reservation' });
   await trigger.click();

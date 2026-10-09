@@ -40,7 +40,17 @@ Cloudflare GitHub build connection settings:
 - Deploy command: `npx wrangler deploy --config .output/server/wrangler.json`
 - Runtime secrets: none
 
-Cloudflare's GitHub app must have access to this repository. Keep the existing selected repositories when adding it. The GitHub build connection and first public deployment still need to be verified.
+Cloudflare's GitHub app must have access to this repository. Keep the existing selected repositories when adding it. The first public deployment was completed on 2026-10-09. The GitHub build connection still needs verification.
+
+To run the browser suite against the deployed site:
+
+```powershell
+$env:DEMO_BASE_URL = 'https://demo-ember-oak.krelyvo.com'
+bun run test
+Remove-Item Env:DEMO_BASE_URL
+```
+
+The application installs no analytics. Cloudflare may inject a zone-level performance beacon (`/cdn-cgi/rum`) on the public host; the reservation test distinguishes this infrastructure request from application submissions.
 
 For an authenticated local deployment:
 
