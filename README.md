@@ -38,6 +38,7 @@ Cloudflare GitHub build connection settings:
 - Root directory: `/`
 - Build command: `bun run build`
 - Deploy command: `npx wrangler deploy --config .output/server/wrangler.json`
+- Build environment variable: `BUN_VERSION=1.4.2` (required for the committed lockfile format)
 - Runtime secrets: none
 
 Cloudflare's GitHub app has access to this repository. The production build connection uses `main`, with preview builds disabled. The first public deployment and Git connection were completed on 2026-10-09. A push to `main` triggers the connected Cloudflare build; check its result before treating automatic deployment as verified.
