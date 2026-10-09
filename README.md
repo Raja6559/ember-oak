@@ -25,8 +25,28 @@ Browser tests use locally installed Google Chrome. `bun run test` starts the dev
 
 `assets/source` retains the original restaurant photo and five AI-generated concept images. Optimized 640px and 1280px WebP derivatives in `public/images` are used by the page. Regenerate with `bun run images`. Source provenance and prompts are in `docs/imagery.md`. Fonts are self-hosted through Fontsource.
 
-## Publishing is a separate task
+## Repository and deployment
 
-The Cloudflare Worker name is `krelyvo-demo-ember-oak`; no remote repo, deployment connection or domain has been created. Planned domain: `demo-ember-oak.krelyvo.com`. The build generates `.output/server/wrangler.json`, matching the existing demos. Noindex is included now to keep the concept out of search results when published.
+Repository: https://github.com/Raja6559/ember-oak
+
+The dedicated Cloudflare Worker name is `krelyvo-demo-ember-oak`. Its custom domain is configured as `demo-ember-oak.krelyvo.com`. The build generates `.output/server/wrangler.json`, matching the existing demos. Noindex is included to keep the concept out of search results.
+
+Cloudflare GitHub build connection settings:
+
+- Repository: `Raja6559/ember-oak`
+- Production branch: `main`
+- Root directory: `/`
+- Build command: `bun run build`
+- Deploy command: `npx wrangler deploy --config .output/server/wrangler.json`
+- Runtime secrets: none
+
+Cloudflare's GitHub app must have access to this repository. Keep the existing selected repositories when adding it. The GitHub build connection and first public deployment still need to be verified.
+
+For an authenticated local deployment:
+
+```powershell
+bun run build
+bunx wrangler deploy --config .output/server/wrangler.json
+```
 
 The existing Krelyvo website and its case study have not been modified. The footer returns to `https://krelyvo.com/work/ember-oak`.
